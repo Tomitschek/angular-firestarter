@@ -4,6 +4,7 @@ import { TaskDialogComponent } from '../dialogs/task-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { BoardService } from '../board.service';
 import { Task } from '../board.model';
+import { timer } from 'rxjs';
 
 @Component({
   selector: 'app-board',
@@ -13,6 +14,7 @@ import { Task } from '../board.model';
 
 export class BoardComponent {
   @Input() board;
+  heartBeat = timer(0,1000);
 
   taskDrop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.board.tasks, event.previousIndex, event.currentIndex);
@@ -48,20 +50,10 @@ export class BoardComponent {
     this.boardService.deleteBoard(this.board.id);
   }
 
-  deleteTask(task: Task, i: number) {
-    this.boardService.removeTask(this.board.id, task);
-  }
+
 
   constructor(private boardService: BoardService, private dialog: MatDialog) {
 
   }
 
-
-  startBolus(task: Task) {
-     task.bolusInProgress = true;
-  }
-
-  toggleIsRunning(task: Task, i: number) {
-    task.isRunning = !task.isRunning
-  }
 }

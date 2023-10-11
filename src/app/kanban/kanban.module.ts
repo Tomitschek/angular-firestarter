@@ -12,14 +12,16 @@ import { FormsModule } from '@angular/forms';
 import { BoardDialogComponent } from './dialogs/board-dialog.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { TaskDialogComponent } from './dialogs/task-dialog.component';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { TaskComponent } from './board/task/task.component';
 
 @NgModule({
   declarations: [
     BoardsListComponent,
     BoardComponent,
     BoardDialogComponent,
-    TaskDialogComponent
+    TaskDialogComponent,
+    TaskComponent
   ],
     imports: [
         CommonModule,

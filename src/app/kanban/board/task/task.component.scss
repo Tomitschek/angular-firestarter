@@ -1,29 +1,29 @@
 .outer-card {
-    margin: 10px;
-    min-width: 300px;
-    max-width: 300px;
-    padding: 10px;
-    background: #212121;
-  }
+  margin: 10px;
+  min-width: 300px;
+  max-width: 300px;
+  padding: 10px;
+  background: #212121;
+}
 
 
 
-  .inner-card {
-      margin: 5px 0;
-      cursor: pointer;
+.inner-card {
+  margin: 5px 0;
+  cursor: pointer;
 
-  }
-  .button-bar {
-    display: flex;
-    flex-direction: row;
-    gap: 5px;
-  }
+}
+.button-bar {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
 
- .card-content {
-   display: flex;
-   flex-direction: row;
-   width: 100%;
- }
+.card-content {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
 
 .badge {
   display: inline-block;
@@ -40,13 +40,13 @@
   align-self: center;
   width: 100%;
 }
-  .cdk-drag-animating {
-    transition: transform 300ms ease;
-  }
+.cdk-drag-animating {
+  transition: transform 300ms ease;
+}
 
-  .tasks.cdk-drop-list-dragging .cdk-drag {
-    transition: transform 300ms ease;
-  }
+.tasks.cdk-drop-list-dragging .cdk-drag {
+  transition: transform 300ms ease;
+}
 
 .cdk-drag-placeholder {
   opacity: 0.5;

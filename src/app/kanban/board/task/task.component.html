@@ -1,0 +1,39 @@
+<mat-card [ngClass]="task.label">
+  <mat-card-header>
+    <mat-card-title>{{ task.description }}</mat-card-title>
+    <mat-card-subtitle>{{ i }}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div class="button-bar">
+      <button mat-raised-button color="primary">
+        <mat-icon *ngIf="task.isRunning" (click)="toggleIsRunning(task)">pause_circle</mat-icon>
+        <mat-icon *ngIf="!task.isRunning" (click)="toggleIsRunning(task)">play_circle</mat-icon>
+      </button>
+      <button *ngIf="task.isRunning && !task.isBolusLockout" mat-raised-button color="primary"
+              [class.spinner]="task.bolusInProgress"
+              [disabled]="task.bolusInProgress"
+              (click)="startBolus(task)">
+        Bolus
+      </button >
+      <button *ngIf="task.isRunning && task.isBolusLockout" mat-raised-button [disabled] = "true">
+        Bolus Lockout
+      </button>
+      <div> Volumen {{totalVolumen}} ml</div>
+    </div>
+
+  </mat-card-content>
+
+  <mat-card-actions align="end">
+    <button mat-icon-button>
+      <mat-icon (click)="openDialog(task, i)">edit</mat-icon>
+    </button>
+    <button mat-icon-button>
+      <mat-icon (click)="deleteTask(task)">delete</mat-icon>
+    </button>
+  </mat-card-actions>
+
+  <mat-card-footer>
+    <mat-progress-bar *ngIf="task.isRunning" mode="indeterminate"></mat-progress-bar>
+  </mat-card-footer>
+</mat-card>

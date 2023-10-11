@@ -10,5 +10,9 @@ export interface Task {
   label?: 'purple' | 'blue' | 'green' | 'yellow' | 'red' | 'gray';
   isRunning?: boolean;
   bolusComplete?: number;
-  bolusInProgress?: boolean
+  bolusTime?:number;
+  bolusVolume?: number;
+  bolusLockoutTime?:number;
+  isBolusLockout?: boolean;
+  bolusInProgress?: boolean;
 }
