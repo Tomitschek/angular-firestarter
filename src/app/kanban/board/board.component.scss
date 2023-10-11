@@ -5,16 +5,44 @@
     padding: 10px;
     background: #212121;
   }
-  
+.header {
+  display: flex;
+  flex-direction: row;
+}
+.spacer {
+  width: 100%
+}
+
   .inner-card {
       margin: 5px 0;
       cursor: pointer;
-  }
 
+  }
+ .card-content {
+   display: flex;
+   flex-direction: row;
+   width: 100%;
+ }
+
+.badge {
+  display: inline-block;
+  font-size: small;
+  color: white;
+  padding: 0.8em 0.7em 0 0.7em;
+  background-color: #405061;
+  line-height: 1em;
+  margin-right: .8em;
+  border-radius: 4px 0 0 4px;
+}
+
+.description {
+  align-self: center;
+  width: 100%;
+}
   .cdk-drag-animating {
     transition: transform 300ms ease;
   }
-  
+
   .tasks.cdk-drop-list-dragging .cdk-drag {
     transition: transform 300ms ease;
   }
@@ -30,3 +58,24 @@
 .red { background: #e74a4a; }
 
 .gray { background: gray; text-decoration: line-through; }
+
+
+@keyframes spinner {
+  to {transform: rotate(360deg);}
+}
+
+.spinner:before {
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin-top: -10px;
+  margin-left: -10px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  border-top-color: #000000;
+  animation: spinner .8s linear infinite;
+}

@@ -8,6 +8,7 @@ import { BoardService } from '../board.service';
   template: `
     <h1 mat-dialog-title>Task</h1>
     <div mat-dialog-content class="content">
+      <div>TAskNr. {{data.idx}}</div>
       <mat-form-field>
         <textarea
           placeholder="Task description"

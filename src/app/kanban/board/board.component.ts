@@ -10,6 +10,7 @@ import { Task } from '../board.model';
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.scss']
 })
+
 export class BoardComponent {
   @Input() board;
 
@@ -47,5 +48,20 @@ export class BoardComponent {
     this.boardService.deleteBoard(this.board.id);
   }
 
-  constructor(private boardService: BoardService, private dialog: MatDialog) {}
+  deleteTask(task: Task, i: number) {
+    this.boardService.removeTask(this.board.id, task);
+  }
+
+  constructor(private boardService: BoardService, private dialog: MatDialog) {
+
+  }
+
+
+  startBolus(task: Task) {
+     task.bolusInProgress = true;
+  }
+
+  toggleIsRunning(task: Task, i: number) {
+    task.isRunning = !task.isRunning
+  }
 }

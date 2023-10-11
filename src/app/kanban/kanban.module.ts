@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { BoardDialogComponent } from './dialogs/board-dialog.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { TaskDialogComponent } from './dialogs/task-dialog.component';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
@@ -20,16 +21,17 @@ import { TaskDialogComponent } from './dialogs/task-dialog.component';
     BoardDialogComponent,
     TaskDialogComponent
   ],
-  imports: [
-    CommonModule,
-    RouterModule,
-    SharedModule,
-    KanbanRoutingModule,
-    FormsModule,
-    DragDropModule,
-    MatDialogModule,
-    MatButtonToggleModule,
-  ],
+    imports: [
+        CommonModule,
+        RouterModule,
+        SharedModule,
+        KanbanRoutingModule,
+        FormsModule,
+        DragDropModule,
+        MatDialogModule,
+        MatButtonToggleModule,
+        MatProgressBarModule,
+    ],
   entryComponents: [BoardDialogComponent, TaskDialogComponent]
 })
 export class KanbanModule {}

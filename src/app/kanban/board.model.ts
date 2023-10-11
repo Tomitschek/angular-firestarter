@@ -8,4 +8,7 @@ export interface Board {
 export interface Task {
   description?: string;
   label?: 'purple' | 'blue' | 'green' | 'yellow' | 'red' | 'gray';
+  isRunning?: boolean;
+  bolusComplete?: number;
+  bolusInProgress?: boolean
 }

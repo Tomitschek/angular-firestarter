@@ -1,7 +1,13 @@
 <mat-card class="outer-card">
+  <div class="header">
+    <div class="spacer"></div>
+    <ng-content></ng-content>
+  </div>
+
+  <ng-content></ng-content>
   <mat-card-header>
     <!-- Slot for the handle -->
-    <ng-content></ng-content>
+
     <mat-card-title>
       {{ board.title }}
     </mat-card-title>
@@ -20,9 +26,35 @@
       class="inner-card"
       cdkDrag
       *ngFor="let task of board.tasks; let i = index"
-      (click)="openDialog(task, i)"
     >
-      <mat-card [ngClass]="task.label"> {{ task.description }} </mat-card>
+      <mat-card [ngClass]="task.label">
+        <mat-card-header>
+          <mat-card-title>{{ task.description }}</mat-card-title>
+          <mat-card-subtitle>{{i}}</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+
+          <button mat-raised-button color="primary">
+            <mat-icon *ngIf="task.isRunning" (click)="toggleIsRunning(task, i)">pause_circle</mat-icon>
+            <mat-icon *ngIf="!task.isRunning" (click)="toggleIsRunning(task, i)">play_circle</mat-icon>
+          </button>
+          <button *ngIf="task.isRunning" mat-raised-button color="primary" [class.spinner]="task.bolusInProgress" [disabled]="task.bolusInProgress"(click)="startBolus(task)">
+            Bolus
+          </button>
+        </mat-card-content>
+        <mat-card-actions align="end">
+          <button mat-icon-button>
+            <mat-icon (click)="openDialog(task, i)">edit</mat-icon>
+          </button>
+          <button mat-icon-button>
+            <mat-icon (click)="deleteTask(task, i)">delete</mat-icon>
+          </button>
+        </mat-card-actions>
+        <mat-card-footer>
+          <mat-progress-bar *ngIf="task.isRunning" mode="indeterminate"></mat-progress-bar>
+        </mat-card-footer>
+      </mat-card>
     </div>
 
     <button mat-stroked-button (click)="openDialog()">
