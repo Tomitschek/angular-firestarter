@@ -9,10 +9,10 @@
     <!-- Slot for the handle -->
 
     <mat-card-title>
-      {{ board.title }}
+      {{ rack.title }}
     </mat-card-title>
     <mat-card-subtitle>
-      {{ board.id }}
+      {{ rack.id }}
     </mat-card-subtitle>
   </mat-card-header>
 
@@ -20,12 +20,12 @@
     class="tasks"
     cdkDropList
     cdkDropListOrientation="vertical"
-    (cdkDropListDropped)="taskDrop($event)">
+    (cdkDropListDropped)="pumpDrop($event)">
     <div
       class="inner-card"
       cdkDrag
-      *ngFor="let task of board.tasks; let i = index">
-      <app-task [task]="task" [board]="board" [i]="i"></app-task>
+      *ngFor="let pump of rack.pumps; let i = index">
+      <app-pump [pump]="pump" [rack]="rack" [i]="i"></app-pump>
     </div>
 
     <button mat-stroked-button (click)="openDialog()">

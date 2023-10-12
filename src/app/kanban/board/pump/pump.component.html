@@ -1,0 +1,39 @@
+<mat-card [ngClass]="pump.label">
+  <mat-card-header>
+    <mat-card-title>{{ pump.description }}</mat-card-title>
+    <mat-card-subtitle>{{ i }}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div class="button-bar">
+      <button mat-raised-button color="primary">
+        <mat-icon *ngIf="pump.isRunning" (click)="toggleIsRunning(pump)">pause_circle</mat-icon>
+        <mat-icon *ngIf="!pump.isRunning" (click)="toggleIsRunning(pump)">play_circle</mat-icon>
+      </button>
+      <button *ngIf="pump.isRunning && !pump.isBolusLockout" mat-raised-button color="primary"
+              [class.spinner]="pump.bolusInProgress"
+              [disabled]="pump.bolusInProgress"
+              (click)="startBolus(pump)">
+        Bolus
+      </button >
+      <button *ngIf="pump.isRunning && pump.isBolusLockout" mat-raised-button [disabled] = "true">
+        Bolus Lockout
+      </button>
+      <div> Volumen {{totalVolumen}} ml</div>
+    </div>
+
+  </mat-card-content>
+
+  <mat-card-actions align="end">
+    <button mat-icon-button>
+      <mat-icon (click)="openDialog(pump, i)">edit</mat-icon>
+    </button>
+    <button mat-icon-button>
+      <mat-icon (click)="deletePump(pump)">delete</mat-icon>
+    </button>
+  </mat-card-actions>
+
+  <mat-card-footer>
+    <mat-progress-bar *ngIf="pump.isRunning" mode="indeterminate"></mat-progress-bar>
+  </mat-card-footer>
+</mat-card>

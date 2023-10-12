@@ -2,36 +2,36 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import firebase from 'firebase/app';
-import { switchMap, map } from 'rxjs/operators';
-import { Board, Task } from './board.model';
+import { switchMap } from 'rxjs/operators';
+import { Rack, Pump } from './rack.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class BoardService {
+export class RackService {
   constructor(private afAuth: AngularFireAuth, private db: AngularFirestore) {}
 
   /**
    * Creates a new board for the current user
    */
-  async createBoard(data: Board) {
+  async createRack(data: Rack) {
     const user = await this.afAuth.currentUser;
     return this.db.collection('boards').add({
       ...data,
       uid: user.uid,
-      tasks: [{ description: 'Hello!', label: 'yellow' }]
+      pumps: [{ description: 'Hello!', label: 'yellow' }]
     });
   }
 
   /**
    * Get all boards owned by current user
    */
-  getUserBoards() {
+  getUserRacks() {
     return this.afAuth.authState.pipe(
       switchMap(user => {
         if (user) {
           return this.db
-            .collection<Board>('boards', ref =>
+            .collection<Rack>('boards', ref =>
               ref.where('uid', '==', user.uid).orderBy('priority')
             )
             .valueChanges({ idField: 'id' });
@@ -46,10 +46,10 @@ export class BoardService {
   /**
    * Run a batch write to change the priority of each board for sorting
    */
-  sortBoards(boards: Board[]) {
+  sortRacks(racks: Rack[]) {
     const db = firebase.firestore();
     const batch = db.batch();
-    const refs = boards.map(b => db.collection('boards').doc(b.id));
+    const refs = racks.map(b => db.collection('boards').doc(b.id));
     refs.forEach((ref, idx) => batch.update(ref, { priority: idx }));
     batch.commit();
   }
@@ -57,32 +57,34 @@ export class BoardService {
   /**
    * Delete board
    */
-  deleteBoard(boardId: string) {
+  deleteRack(rackId: string) {
     return this.db
       .collection('boards')
-      .doc(boardId)
+      .doc(rackId)
       .delete();
   }
 
   /**
    * Updates the tasks on board
    */
-  updateTasks(boardId: string, tasks: Task[]) {
+  updatePumps(rackId: string, pumps: Pump[]) {
     return this.db
       .collection('boards')
-      .doc(boardId)
-      .update({ tasks });
+      .doc(rackId)
+      .update({ pumps: pumps });
   }
 
   /**
-   * Remove a specifc task from the board
+   * Remove a specifc pump from the board
    */
-  removeTask(boardId: string, task: Task) {
+  removePump(rackId: string, pump: Pump) {
     return this.db
       .collection('boards')
-      .doc(boardId)
+      .doc(rackId)
       .update({
-        tasks: firebase.firestore.FieldValue.arrayRemove(task)
+        pumps: firebase.firestore.FieldValue.arrayRemove(pump)
       });
   }
+
+
 }

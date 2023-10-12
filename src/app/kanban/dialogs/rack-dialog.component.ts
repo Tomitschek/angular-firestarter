@@ -19,9 +19,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
     </div>
   `
 })
-export class BoardDialogComponent {
+export class RackDialogComponent {
   constructor(
-    public dialogRef: MatDialogRef<BoardDialogComponent>,
+    public dialogRef: MatDialogRef<RackDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 

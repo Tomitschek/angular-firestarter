@@ -1,11 +1,11 @@
-export interface Board {
+export interface Rack {
   id?: string;
   title?: string;
   priority?: number;
-  tasks?: Task[];
+  pumps?: Pump[];
 }
 
-export interface Task {
+export interface Pump {
   description?: string;
   label?: 'purple' | 'blue' | 'green' | 'yellow' | 'red' | 'gray';
   isRunning?: boolean;

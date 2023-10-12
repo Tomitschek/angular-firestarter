@@ -2,26 +2,27 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { KanbanRoutingModule } from './kanban-routing.module';
-import { BoardsListComponent } from './boards-list/boards-list.component';
+import { WardComponent } from './boards-list/ward.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { MatDialogModule } from '@angular/material/dialog';
-import { BoardComponent } from './board/board.component';
+import { RackComponent } from './board/rack.component';
 import { FormsModule } from '@angular/forms';
-import { BoardDialogComponent } from './dialogs/board-dialog.component';
+import { RackDialogComponent } from './dialogs/rack-dialog.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { TaskDialogComponent } from './dialogs/task-dialog.component';
+import { PumpDialogComponent } from './dialogs/pump-dialog.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { TaskComponent } from './board/task/task.component';
+import { PumpComponent } from './board/pump/pump.component';
+import {PumpDialogService} from './pump-dialog.service';
 
 @NgModule({
   declarations: [
-    BoardsListComponent,
-    BoardComponent,
-    BoardDialogComponent,
-    TaskDialogComponent,
-    TaskComponent
+    WardComponent,
+    RackComponent,
+    RackDialogComponent,
+    PumpDialogComponent,
+    PumpComponent
   ],
     imports: [
         CommonModule,
@@ -34,6 +35,7 @@ import { TaskComponent } from './board/task/task.component';
         MatButtonToggleModule,
         MatProgressBarModule,
     ],
-  entryComponents: [BoardDialogComponent, TaskDialogComponent]
+  entryComponents: [RackDialogComponent, PumpDialogComponent],
+  providers: [PumpDialogService]
 })
 export class KanbanModule {}

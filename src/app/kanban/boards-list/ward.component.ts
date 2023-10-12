@@ -2,42 +2,42 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
-import { BoardDialogComponent } from '../dialogs/board-dialog.component';
-import { Board } from '../board.model';
-import { BoardService } from '../board.service';
+import { RackDialogComponent } from '../dialogs/rack-dialog.component';
+import { Rack } from '../rack.model';
+import { RackService } from '../rack.service';
 
 @Component({
   selector: 'app-boards-list',
-  templateUrl: './boards-list.component.html',
-  styleUrls: ['./boards-list.component.scss']
+  templateUrl: './ward.component.html',
+  styleUrls: ['./ward.component.scss']
 })
-export class BoardsListComponent implements OnInit, OnDestroy {
+export class WardComponent implements OnInit, OnDestroy {
 
-  boards: Board[];
+  boards: Rack[];
   sub: Subscription;
 
-  constructor(public boardService: BoardService, public dialog: MatDialog) {}
+  constructor(public rackService: RackService, public dialog: MatDialog) {}
 
   ngOnInit() {
-    this.sub = this.boardService
-      .getUserBoards()
+    this.sub = this.rackService
+      .getUserRacks()
       .subscribe(boards => (this.boards = boards));
   }
 
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.boards, event.previousIndex, event.currentIndex);
-    this.boardService.sortBoards(this.boards);
+    this.rackService.sortRacks(this.boards);
   }
 
-  openBoardDialog(): void {
-    const dialogRef = this.dialog.open(BoardDialogComponent, {
+  openRackDialog(): void {
+    const dialogRef = this.dialog.open(RackDialogComponent, {
       width: '400px',
       data: {  }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.boardService.createBoard({
+        this.rackService.createRack({
           title: result,
           priority: this.boards.length
         });
