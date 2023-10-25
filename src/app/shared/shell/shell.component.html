@@ -8,7 +8,7 @@
 
       <a mat-list-item routerLink="/" (click)="drawer.close()">Home</a>
       <a mat-list-item routerLink="/login" (click)="drawer.close()">Login</a>
-      <a mat-list-item routerLink="/kanban" (click)="drawer.close()">PumpRack Demo</a>
+      <a mat-list-item routerLink="/pump-mockup" (click)="drawer.close()">PumpRack Demo</a>
       <!--a mat-list-item routerLink="/customers" (click)="drawer.close()">SSR Demo</a-->
     </mat-nav-list>
   </mat-sidenav>
@@ -26,7 +26,7 @@
 
       <span class="fill-space"></span>
       <div *ngIf="!(isHandset$ | async)">
-        <a mat-button routerLink="/kanban">🍱 PumpRack Demo</a>
+        <a mat-button routerLink="/pump-mockup">🍱 PumpRack Demo</a>
         <!--a mat-button routerLink="/customers">⚡ SSR Demo</a-->
 
         <a mat-button routerLink="/login" *ngIf="!(afAuth.authState | async)">🔑 Login</a>

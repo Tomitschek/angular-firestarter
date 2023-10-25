@@ -10,9 +10,9 @@ const routes: Routes = [
     loadChildren: () => import('./user/user.module').then(m => m.UserModule)
   },
   {
-    path: 'kanban',
+    path: 'pump-mockup',
     loadChildren: () =>
-      import('./kanban/kanban.module').then(m => m.KanbanModule),
+      import('./pump-mockup/pump-mockup.module').then(m => m.PumpMockupModule),
     canActivate: [AuthGuard]
   }
   /*,

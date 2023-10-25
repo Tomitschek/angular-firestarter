@@ -12,7 +12,7 @@ export class RackService {
   constructor(private afAuth: AngularFireAuth, private db: AngularFirestore) {}
 
   /**
-   * Creates a new board for the current user
+   * Creates a new rack for the current user
    */
   async createRack(data: Rack) {
     const user = await this.afAuth.currentUser;
@@ -44,7 +44,7 @@ export class RackService {
   }
 
   /**
-   * Run a batch write to change the priority of each board for sorting
+   * Run a batch write to change the priority of each rack for sorting
    */
   sortRacks(racks: Rack[]) {
     const db = firebase.firestore();
@@ -55,7 +55,7 @@ export class RackService {
   }
 
   /**
-   * Delete board
+   * Delete rack
    */
   deleteRack(rackId: string) {
     return this.db
@@ -65,17 +65,17 @@ export class RackService {
   }
 
   /**
-   * Updates the tasks on board
+   * Updates the tasks on rack
    */
   updatePumps(rackId: string, pumps: Pump[]) {
     return this.db
       .collection('boards')
       .doc(rackId)
-      .update({ pumps: pumps });
+      .update({ pumps });
   }
 
   /**
-   * Remove a specifc pump from the board
+   * Remove a specifc pump from the rack
    */
   removePump(rackId: string, pump: Pump) {
     return this.db

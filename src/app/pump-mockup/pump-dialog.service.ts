@@ -3,7 +3,7 @@ import {Pump, Rack} from './rack.model';
 import {PumpDialogComponent} from './dialogs/pump-dialog.component';
 import {RackService} from './rack.service';
 import {MatDialog} from '@angular/material/dialog';
-import {KanbanModule} from './kanban.module';
+import {PumpMockupModule} from './pump-mockup.module';
 
 @Injectable({
   providedIn: 'any'

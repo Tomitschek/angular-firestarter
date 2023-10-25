@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { WardComponent } from './boards-list/ward.component';
+import { WardComponent } from './ward/ward.component';
 
 
 const routes: Routes = [
@@ -12,5 +12,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class KanbanRoutingModule { }
+export class PumpMockupRoutingModule { }
 

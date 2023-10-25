@@ -7,7 +7,7 @@ import { Rack } from '../rack.model';
 import { RackService } from '../rack.service';
 
 @Component({
-  selector: 'app-boards-list',
+  selector: 'app-ward',
   templateUrl: './ward.component.html',
   styleUrls: ['./ward.component.scss']
 })
